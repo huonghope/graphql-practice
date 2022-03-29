@@ -18,3 +18,7 @@ React + GraphQL + MongoDB
 ### Statement
 - Query: Get data
 - Mutation: Insert data
+
+
+Conference
+[Youtube](https://www.youtube.com/watch?v=G7Uo9yX0N8g&list=PLKzNGvIJtUDZt5GlzARgHUVFaTzfQytJV)
