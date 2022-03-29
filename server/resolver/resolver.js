@@ -3,6 +3,9 @@
 // const Author = require('../models/Author')
 // const Book = require('../models/Book')
 
+/**
+ * https://github.com/huonghope/yt-graphql-react-event-booking-api/tree/21-dataloader-improvements/graphql/resolvers
+ */
 
 const resolvers = {
   // Query

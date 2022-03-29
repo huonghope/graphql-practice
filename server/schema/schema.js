@@ -1,5 +1,8 @@
 // DATA standard
-
+/**
+ * Can use buildSchema to build
+ * https://github.com/huonghope/yt-graphql-react-event-booking-api/blob/21-dataloader-improvements/graphql/schema/index.js
+ */
 const { gql } = require('apollo-server-express');
 const typeDefs = gql`
   type Book {
