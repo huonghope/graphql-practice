@@ -1,7 +1,10 @@
 // Define Data
 const { books, authors } = require('../data/static')
-const resolvers = {
+const Author = require('../models/Author')
+const Book = require('../models/Book')
 
+
+const resolvers = {
   // Query
   Query: {
     books: () => books,
@@ -21,8 +24,17 @@ const resolvers = {
   // Mutation
   // Sẽ phải cần đưa vào cơ sở dữ liệu
   Mutation: {
-    createAuthor: (parent, args) => args,
-    createBook: (parent, args) => args,
+    createAuthor: async (parent, args) => {
+      console.log('[createAuthor]: ', args);
+      const newAuthor = new Author(args)
+      return await newAuthor.save()
+    },
+    createBook: async (parent, args) => {
+      console.log('[createBook]: ', args);
+      const newAuthor = new Author(args)
+      const newBook = new Book(args)
+      return await newBook.save()
+    },
   }
 }
 module.exports = resolvers
