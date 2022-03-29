@@ -14,6 +14,7 @@ const mongoDataMethods = {
     return await newBook.save()
   },
   getBookById: async (id) => await Book.findById(id),
+  getBooksByAuthorId: async (id) => await Book.find(id),
   getAllBooks: async () => await Book.find()
 }
 

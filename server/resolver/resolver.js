@@ -14,11 +14,11 @@ const resolvers = {
   },
   // Khi trả lại type Book thì resolvers này sẽ chạy
   Book: {
-    author: (parent, args) => authors.find(author => author.id.toString() === parent.authorId)
+    author: async ({authorId}, args,{mongoDataMethods}) => await mongoDataMethods.getAuthorById(authorId)
   },
   // Khi trả lại type Author thì resolvers này sẽ chạy
   Author: { 
-    books: (parent, args) => books.filter(book => book.authorId.toString() === parent.id) 
+    books: async ({id}, args, {mongoDataMethods}) => await mongoDataMethods.getBooksByAuthorId(id),
   },
 
   // Mutation
