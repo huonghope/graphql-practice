@@ -6,6 +6,10 @@ const mongoose = require('mongoose');
 const typeDefs = require('./schema/schema')
 const resolvers = require('./resolver/resolver')
 
+
+// Load db methods
+const mongoDataMethods = require('./data/db')
+
 // Create server ApolloServer
 const app = express();
 
@@ -25,6 +29,7 @@ async function startServer() {
     apolloServer = new ApolloServer({
         typeDefs,
         resolvers,
+        context: () => ({mongoDataMethods})
     });
     await apolloServer.start();
     apolloServer.applyMiddleware({ app });

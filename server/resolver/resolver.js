@@ -7,9 +7,9 @@ const Book = require('../models/Book')
 const resolvers = {
   // Query
   Query: {
-    books: () => books,
+    books: async (parent, args, context) => await context.mongoDataMethods.getAllBooks(),
     book: (parent, args) => books.find(book => book.id.toString() === args.id),
-    authors: () => authors,
+    authors: async (parent, args, context) => await context.mongoDataMethods.getAllAuthors(),
     author: (parent, args) => authors.find(author => authors.id.toString() === args.id),
   },
   // Khi trả lại type Book thì resolvers này sẽ chạy
