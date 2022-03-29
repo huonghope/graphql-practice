@@ -1,16 +1,16 @@
 // Define Data
-const { books, authors } = require('../data/static')
-const Author = require('../models/Author')
-const Book = require('../models/Book')
+// const { books, authors } = require('../data/static')
+// const Author = require('../models/Author')
+// const Book = require('../models/Book')
 
 
 const resolvers = {
   // Query
   Query: {
     books: async (parent, args, {mongoDataMethods}) => await mongoDataMethods.getAllBooks(),
-    book: (parent, args) => books.find(book => book.id.toString() === args.id),
+    book: async (parent, {id}, {mongoDataMethods}) => await mongoDataMethods.getBookById(id),
     authors: async (parent, args, {mongoDataMethods}) => await mongoDataMethods.getAllAuthors(),
-    author: (parent, args) => authors.find(author => authors.id.toString() === args.id),
+    author: async (parent, {id}, {mongoDataMethods}) => await mongoDataMethods.getAuthorById(id),
   },
   // Khi trả lại type Book thì resolvers này sẽ chạy
   Book: {
@@ -24,16 +24,12 @@ const resolvers = {
   // Mutation
   // Sẽ phải cần đưa vào cơ sở dữ liệu
   Mutation: {
-    createAuthor: async (parent, args) => {
-      console.log('[createAuthor]: ', args);
-      const newAuthor = new Author(args)
-      return await newAuthor.save()
+    createAuthor: async (parent, args, {mongoDataMethods}) => {
+      await mongoDataMethods.createAuthor(args)
     },
-    createBook: async (parent, args) => {
-      console.log('[createBook]: ', args);
-      const newAuthor = new Author(args)
-      const newBook = new Book(args)
-      return await newBook.save()
+    createBook: async (parent, args, {mongoDataMethods}) => {
+      console.log(args)
+      await mongoDataMethods.createBook(args)
     },
   }
 }
